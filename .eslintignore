@@ -1,0 +1,9 @@
+node_modules/**
+**/*.css
+**/*.html
+**/*.js
+*.md
+*.scss
+*.woff
+*.ttf
+!.eslintrc.js

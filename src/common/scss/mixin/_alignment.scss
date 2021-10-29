@@ -1,0 +1,61 @@
+// flex center
+@mixin center-flex($direction: both) {
+    display: flex;
+    @if $direction == both {
+        justify-content: center;
+        align-items: center;
+    }
+    @else if $direction == x {
+        justify-content: center;
+    }
+    @else if $direction == y {
+        align-items: center;
+    }
+}
+
+
+// translate center
+@mixin center-translate($direction: both) {
+    position: absolute;
+    @if $direction == both {
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+    }
+    @else if $direction == x {
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+    }
+    @else if $direction == y {
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
+
+// justify
+// 左右对齐
+@mixin justify($extend: true) {
+    @if $extend {
+        @extend %justify;
+    }
+    @else {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+// Center-align a block level element
+@mixin center-block($extend: true) {
+    @if $extend {
+        @extend %center-block;
+    }
+    @else {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+%center-block {
+    @include center-block(false);
+}

@@ -1,0 +1,257 @@
+.ant-form-item-label > label {
+    color: $--color-text-bold !important;
+}
+
+.ant-table {
+    .ant-table-thead .ant-table-cell {
+        font-weight: bold;
+    }
+    thead > tr > th {
+        // font-size: $--fontSize-small;
+        color: $--color-text-primary !important;
+        text-align: center;
+        background: $--background-color-th !important;
+        // padding: 5px 8px;
+        // border-top: 1px solid #f0f0f0;
+    }
+
+    tbody > tr {
+        &.ant-table-row-selected > td {
+            background: $--background-color-hover !important;
+        }
+        > td:last-of-type > .actions {
+            visibility: hidden;
+            display: flex;
+            button {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+        &:hover {
+            > td:last-of-type > .actions {
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.ant-btn-sm {
+    font-size: $--fontSize-small !important;
+}
+
+.ant-input-lg,
+.ant-select-lg {
+    font-size: $--fontSize !important;
+}
+
+.ant-input-affix-wrapper {
+    color: $--color-text-tertiary !important;
+}
+
+.ant-input-affix-wrapper-lg {
+    padding: 8px 11px !important;
+    font-size: $--fontSize !important;
+}
+
+//ant-tree reset lines
+.ant-tree.ant-tree-show-line.hide-file-icon .ant-tree-treenode {
+    width: 100%;
+    padding-right: 5px;
+    white-space: nowrap;
+    @include center-flex(y);
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon .ant-tree-node-content-wrapper {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px 24px 4px 4px;
+    // &:after {
+    //     content: "...";
+    //     display: none;
+    //     float: right;
+    // }
+    &:hover {
+        &:after {
+            display: inline-block;
+        }
+    }
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon span.ant-tree-switcher-noop {
+    background: transparent;
+    position: relative;
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon .ant-tree-indent-unit::before {
+    top: -7px;
+    height: calc(100% + 30px);
+    // border-color: red;
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon .ant-tree-switcher-noop > .anticon-file {
+    visibility: hidden;
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon .ant-tree-switcher-noop {
+    &:after {
+        content: " ";
+        height: 1px;
+        border-bottom: 1px solid #d9d9d9;
+        width: 10px;
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        margin: 2px;
+    }
+    &:before {
+        content: " ";
+        width: 1px;
+        height: 20px;
+        border-left: 1px solid #d9d9d9;
+        position: absolute;
+        left: 11px;
+        margin: 0;
+        top: -7px;
+    }
+}
+
+//modal confirm
+.eams-errorConfirm {
+    .ant-modal-confirm-title {
+        color: $--color-error;
+    }
+}
+
+// 面包屑
+.ant-breadcrumb {
+    > span {
+        color: $--color-text-tertiary !important;
+        > a {
+            color: $--color-text-tertiary !important;
+        }
+        &:last-child {
+            color: $--color-text-primary !important;
+        }
+    }
+}
+
+.ant-form-item-explain {
+    font-size: $--fontSize-small !important;
+}
+
+.ant-tree-node-content-wrapper:hover {
+    background: $--background-color-hover !important;
+}
+
+.ant-btn > .ant-btn-loading-icon .anticon {
+    padding-right: 0 !important;
+    margin-right: 8px;
+}
+
+.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background: $--background-color-hover !important;
+}
+
+.eamsform {
+    .ant-form-item-label {
+        min-width: 100px;
+        margin-right: 145px;
+    }
+    .ant-form-item-control {
+        max-width: 340px;
+    }
+    .emptyLabel .ant-form-item-label {
+        visibility: hidden;
+    }
+}
+
+// 重写antd的checkbox半选样式
+.ant-checkbox-indeterminate .ant-checkbox-inner {
+    background-color: $--color-primary !important;
+    border-color: $--color-primary !important;
+}
+
+.ant-checkbox-indeterminate .ant-checkbox-inner::after {
+    height: 2px !important;
+    background-color: #fff !important;
+}
+
+// 重写antd的tree的checkbox半选样式
+.ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner {
+    background-color: $--color-primary !important;
+    border-color: $--color-primary !important;
+}
+
+.ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner::after {
+    height: 2px !important;
+    background-color: #fff !important;
+}
+
+// 面包屑样式
+.eams-breadcrumb {
+    .ant-breadcrumb-link {
+        color: $--color-text-tertiary !important;
+        a {
+            color: $--color-text-tertiary !important;
+            &:hover {
+                color: $--color-primary !important;
+            }
+        }
+    }
+
+    > span:last-child .ant-breadcrumb-link {
+        color: $--color-text-primary !important;
+        a {
+            color: $--color-text-primary !important;
+        }
+    }
+
+    .ant-breadcrumb-separator {
+        color: $--color-text-tertiary !important;
+    }
+}
+
+// 重写弹窗样式
+.eams-modal {
+    .ant-modal-header {
+        padding-top: 40px;
+        border-bottom: 0;
+        padding-left: 30px;
+
+        .ant-modal-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    }
+
+    .ant-modal-body {
+        padding: 15px 30px 10px 30px;
+    }
+
+    .ant-modal-footer {
+        border-top: 0;
+        padding-right: 30px;
+        padding-bottom: 24px;
+    }
+}
+
+.ant-form-horizontal {
+    .ant-form-item {
+        .ant-form-item-label {
+            label {
+                &::before {
+                    content: "";
+                    display: inline-block;
+                    margin-right: 4px;
+                    // width: 0px;
+                    height: 14px;
+                }
+            }
+        }
+    }
+}
+
+.ant-layout-header {
+    background-color: #fff !important;
+}

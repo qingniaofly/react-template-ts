@@ -1,0 +1,10 @@
+:export { pimaryColor: $--color-primary }
+:export { linkColor: $--color-lighten }
+:export { successBg: nth($--successColor, 2)}
+:export { errorBg: nth($--errorColor, 2)}
+:export { warningBg: nth($--warningColor, 3)}
+:export { whiteBg: $--background-color-white}
+:export { grayBg: $--background-color-gray}
+:export { iconBg: $--color-text-fourth}
+:export { maskBg: $--drawer-mask-bg}
+

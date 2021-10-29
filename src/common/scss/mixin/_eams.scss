@@ -1,0 +1,63 @@
+
+//页头
+@mixin page-header($extend: true) {
+    @if $extend {
+        @extend %page-header;
+    }
+    @else {
+        min-height: $--menu-height;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $--border-color-base;
+    }
+}
+
+%page-header {
+    @include page-header(false);
+}
+
+@mixin page-lf-padding($direction: both) {
+    @if $direction == both {
+        padding: 0px 30px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        @include max-screen(map-get($breakpoints, "sm" )) {
+            padding: 0px 10px;
+         }
+    }
+    // @else if $direction == x {
+    //     padding: 0 45px;
+    //     @include max-screen(map-get($breakpoints, "sm" )) {
+    //         padding: 0 15px;
+    //     }
+    // }
+    // @else if $direction == y {
+    //     padding: 20px 0;
+    //     @include max-screen(map-get($breakpoints, "sm" )) {
+    //         padding: 10px 0;
+    //     }
+    // }
+}
+
+
+%page-padding {
+    @include page-lf-padding(both);
+}
+
+%page-padding-whiteBg {
+    @include page-lf-padding(both);
+    background: $--background-color-white !important;
+}
+
+// %page-tb-padding {
+//     @include page-lf-padding(y);
+// }
+
+// %page-padding {
+//     @include page-lf-padding(x);
+// }
+
+

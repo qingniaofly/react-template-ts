@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+//font awesome
+$fa-font-path: "../../node_modules/@fortawesome/fontawesome-free/webfonts" !default;
+//$fa-font-path: "./fonts" !default;
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import "~@fortawesome/fontawesome-free/scss/brands.scss"; //fab
+@import '~@fortawesome/fontawesome-free/scss/regular.scss'; //far
+@import "~@fortawesome/fontawesome-free/scss/solid.scss"; //fas or fa
+

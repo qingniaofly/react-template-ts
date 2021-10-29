@@ -1,0 +1,288 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// animate.scss
+// 提供6组动画 fade-in/out, shrink-in/out, up-in/out, down-in/out, left-in/out, right-in/out
+//-----------------------------------------------------
+
+%animation-basic {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+// fade in/out
+//-----------------------------------------------------
+
+@mixin animation-fade-in($className: fade, $from: 0) {
+    $name: str-insert(In, $className, 0);
+    animation-name: $name;
+    @extend %animation-basic;
+    @include animation-fade($name: $name, $from: $from);
+}
+
+
+@mixin animation-fade-out($className: fade, $to: 0) {
+    $name: str-insert(Out, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @include animation-fade($name: $name, $from: 1, $to: $to);
+}
+
+// shrink in/out
+//-----------------------------------------------------
+
+@mixin animation-shrink-in($className: shrink, $from: 0.815) {
+    $name: str-insert(In, $className, 0);
+
+    // .#{$className}-in {
+    //     animation-name: $name;
+    //     @extend %animation-basic;
+    // }
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 0;
+            transform: scale($from);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
+
+@mixin animation-shrink-out($className: shrink, $to: 1.185) {
+    $name: str-insert(Out, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale($to);
+        }
+    }
+}
+
+// down in/out
+//-----------------------------------------------------
+
+@mixin animation-down-in($className: down, $value: 100%) {
+    $name: str-insert(In, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 0;
+            transform: translate(0, $value);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+
+@mixin animation-down-out($className: down, $value: 100%) {
+    $name: str-insert(Out, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(0, $value);
+        }
+    }
+}
+
+// up in/out
+//-----------------------------------------------------
+
+@mixin animation-up-in($className: up, $value: -100%) {
+    $name: str-insert(In, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 0;
+            transform: translate(0, $value);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+
+@mixin animation-up-out($className: up, $value: -100%) {
+    $name: str-insert(Out, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(0, $value);
+        }
+    }
+}
+
+// left in/out
+//-----------------------------------------------------
+
+@mixin animation-left-in($className: left, $value: -100%) {
+    $name: str-insert(In, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 0;
+            transform: translate($value, 0);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+
+@mixin animation-left-out($className: left, $value: -100%) {
+    $name: str-insert(Out, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate($value, 0);
+        }
+    }
+}
+
+// right in/out
+//-----------------------------------------------------
+
+@mixin animation-right-in($className: right, $value: 100%) {
+    $name: str-insert(In, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 0;
+            transform: translate($value, 0);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+
+@mixin animation-right-out($className: right, $value: 100%) {
+    $name: str-insert(Out, $className, 0);
+
+    animation-name: $name;
+    @extend %animation-basic;
+
+    @keyframes #{$name} {
+        0% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate($value, 0);
+        }
+    }
+}
+
+
+
+// animation-translate
+// @include animation-translate
+// @include animation-translate($from: x -100%);
+// @include animation-translate($from: xy -50% -50%, $to: y -100%);
+// @include animation-translate($from: y 100px, $to: y 0px);
+@mixin animation-translate($name: animationTranslate, $from: y -100%, $to: false) {
+    @keyframes #{$name} {
+        @if $from and length($from) > 1 {
+            from {
+                @if nth($from, 1) == x {
+                transform: translate(nth($from, 2), 0);
+                }
+                @if nth($from, 1) == y {
+                transform: translate(0, nth($from, 2));
+                }
+                @if nth($from, 1) == xy or nth($from, 1) == both {
+                transform: translate(nth($from, 2), nth($from, 3));
+                }
+            }
+        }
+        @if $to and length($to) > 1 {
+            to {
+                @if nth($to, 1) == x {
+                transform: translate(nth($to, 2), 0);
+                }
+                @if nth($to, 1) == y {
+                transform: translate(0, nth($to, 2));
+                }
+                @if nth($to, 1) == xy or nth($to, 1) == both {
+                transform: translate(nth($to, 2), nth($to, 3));
+                }
+            }
+        }
+    }
+}
+
+// animation-fade
+// @include animation-fade
+// @include animation-fade($from: false, $to: .5);
+// @include animation-fade($from: 1, $to: 0);
+@mixin animation-fade($name: animationFade, $from: 0, $to: false){
+    @keyframes #{$name} {
+      @if $from {
+        from {
+          opacity: $from;
+        }
+      }
+      @if $to {
+        to {
+          opacity: $to;
+        }
+      }
+    }
+  }

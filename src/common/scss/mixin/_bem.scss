@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+$elementSeparator: '__';
+$modifierSeparator: '--';
+
+
+@function containsSeparator($selector) {
+    $selector: selectorToString($selector);
+    @if str-index($selector, $modifierSeparator) {
+        @return true;
+    }
+
+    @if str-index($selector, $elementSeparator) {
+        @return true;
+    }
+
+    @return false;
+}
+
+@function selectorToString($selector) {
+    $selector: inspect($selector); //cast to string
+    $selector: str-slice($selector, 2, -2); //remove brackets
+    @return $selector;
+}
+
+@function getBlock($selector) {
+    $modifierStart: null;
+    $selector: selectorToString($selector);
+    @if(str-index($selector, $modifierSeparator)) {
+        $modifierStart: str-index($selector, $modifierSeparator) - 1;
+    }
+    //block__el || block__el--m
+    @if (str-index($selector, $elementSeparator)) {
+        $elStart: str-index($selector, $elementSeparator) + 2;
+        //block__el--m
+        @if ($modifierStart) {
+            @return str-slice($selector, $elStart, $modifierStart); //ge el from block__el--m
+        }
+        //block__el
+        @else {
+            @return str-slice($selector, $elStart, -2);//ge el from block__el
+        }
+    }
+    //block--m
+    @else {
+         @return str-slice($selector, 0, $modifierStart); // get block from block--m
+    }
+}
+
+
+@mixin e($element) {
+    $selector: &;
+    //如果已是带modfier的， 比如test
+    @if containsSeparator($selector) {
+        $block: getBlock($selector);
+        @at-root {
+            #{$selector} {
+                #{$block+$elementSeparator+$element} {
+                    @content;
+                }
+            }
+        }
+    }
+     @else {
+        @at-root {
+            #{$selector+$elementSeparator+$element} {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin m($modifier) {
+    @at-root {
+        #{&}#{$modifierSeparator + $modifier} {
+            @content;
+        }
+    }
+}
+
+
+

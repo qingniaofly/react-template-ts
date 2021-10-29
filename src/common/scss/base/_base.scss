@@ -1,0 +1,309 @@
+@charset "UTF-8";
+
+html,
+body,
+#root {
+    min-height: 100vh !important;
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: $--fontCn;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    color: $--color-text-primary;
+    background: $--background-color-gray !important;
+
+    &.en {
+        font-family: $--fontEn;
+    }
+}
+
+label {
+    color: $--color-text-bold;
+}
+
+//全局滚动条
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $--background-color-gray;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba($--color-text-secondary, 0.2);
+    border-radius: $--border-radius-base;
+}
+
+#nprogress .bar {
+    background: $--color-accent !important;
+}
+
+.upload-button {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline;
+}
+
+.btn-gradient {
+    background-image: linear-gradient(to left, #7ea9fd, #4a86fb) !important;
+    &-primary {
+        &:hover,
+        &:focus {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+                linear-gradient(to left, #7ea9fd, #4a86fb) !important;
+        }
+        .active,
+        &:active {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                linear-gradient(to left, #7ea9fd, #4a86fb) !important;
+        }
+    }
+}
+
+.eams-table {
+    tbody > tr {
+        cursor: pointer;
+    }
+    @include m(drag) {
+        tbody > tr {
+            cursor: move;
+        }
+    }
+}
+
+.ie-tips-panel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    position: fixed;
+    top: 61px;
+    z-index: 100000;
+    width: 100%;
+    left: 0px;
+    background: #4f8bff;
+    color: #fff;
+    font-size: 13px;
+    .ie-tips-btn{
+        background: #fff;
+        color: #4f8bff;
+        padding: 0px 5px;
+        border-radius: 4px;
+        margin-left: 10px;
+        cursor: default;
+    }
+}
+
+.eams-spin {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .ant-spin {
+        @include center-translate();
+    }
+}
+
+.eams-dialog {
+    .ant-modal-header,
+    .ant-modal-footer {
+        display: none;
+    }
+
+    h1 {
+        font-weight: bold !important;
+    }
+    .ant-modal-body {
+        padding: 30px 30px 20px;
+    }
+}
+
+.eams-full-screen-dialog {
+    .ant-modal {
+        width: 100% !important;
+        height: 100%;
+        top: 0;
+        padding: 0 !important;
+    }
+
+    .ant-modal-header,
+    .ant-modal-footer {
+        display: none;
+    }
+
+    .ant-modal-body {
+        height: 100%;
+    }
+
+    .ant-modal-content {
+        height: 100%;
+    }
+}
+
+.row-dragging {
+    background: $--background-color-drag;
+    border: 1px solid $--border-color-base;
+
+    td {
+        padding: 12px;
+        visibility: hidden;
+    }
+
+    .drag-visible {
+        visibility: visible;
+    }
+}
+
+.product-animation {
+    &-appear {
+        opacity: 0;
+    }
+    &-enter {
+        opacity: 0;
+    }
+    &-enter-active {
+        @include animation-up-in();
+    }
+    &-exit {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    &-exit-active {
+        @include animation-up-out();
+        animation-timing-function: ease-out;
+    }
+}
+
+.fade-animation {
+    &-appear {
+        opacity: 0;
+    }
+    &-enter {
+        opacity: 0;
+    }
+    &-enter-active {
+        @include animation-fade-in();
+    }
+    &-exit {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    &-exit-active {
+        @include animation-fade-out();
+        // animation-timing-function: ease-out;
+    }
+}
+
+.route-fade {
+    &-enter {
+        opacity: 0;
+        transform: translate(100%, 0);
+    }
+    &-enter-active {
+        opacity: 1;
+        transform: translate(0, 0);
+        transition: opacity 300ms, transform 300ms ease-in-out 0.1s;
+    }
+    &-exit {
+        opacity: 1;
+        transform: translate(0, 0);
+        transition: opacity 300ms, transform 300ms ease-in-out 0.1s;
+    }
+    &-exit-active {
+        opacity: 0;
+        transform: translate(-100%, 0);
+    }
+}
+
+.eams-link {
+    color: $--color-primary;
+}
+
+.eams-link-disabled {
+    color: $--color-text-tertiary;
+    &:hover {
+        color: $--color-text-tertiary;
+    }
+}
+
+.eams-breadcrumb-link {
+    color: $--color-text-tertiary;
+    a {
+        color: $--color-text-tertiary !important;
+    }
+}
+
+
+// 主色
+.eams-color-primary {
+    color: $--color-primary !important;
+    &:hover {
+        color: $--color-primary;
+    }
+}
+
+// 警告色
+.eams-color-warning {
+    color: $--color-accent2 !important;
+    &:hover {
+        color: $--color-accent2;
+    }
+}
+
+// 错误色
+.eams-color-error {
+    color: $--color-accent2;
+    &:hover {
+        color: $--color-accent2;
+    }
+}
+
+// 灰色
+.eams-color-gray {
+    color: $--color-text-tertiary !important;
+    &:hover {
+        color: $--color-text-tertiary;
+    }
+}
+
+// 注释颜色
+.eams-color-notes {
+    color: $--color-text-fourth !important;
+    &:hover {
+        color: $--color-text-fourth;
+    }
+}
+
+// 注释样式，引入<i className="eams-icon eams-icon-notes eams-color-notes eams-notes" />
+.eams-notes {
+    position: relative;
+    top: 1px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+.eams-subapp-loading {
+    height: 100%;
+    .ant-spin-container {
+        height: 100%;
+    }
+}
+
+#subapp {
+    height: 100%;
+    > div {
+        height: 100%;
+    }
+}
+
+#subapp-content {
+    height: 100%;
+}
